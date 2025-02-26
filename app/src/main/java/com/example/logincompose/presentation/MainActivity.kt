@@ -36,12 +36,13 @@ class MainActivity : ComponentActivity() {
                     containerColor = Color.White,
                     modifier = Modifier
                         .navigationBarsPadding()
-                        .imePadding()) {
+                        .imePadding()
+                ) {
                     NavHost(
                         navController = navController,
                         startDestination = Welcome,
                         modifier = Modifier.padding(it)
-                    ){
+                    ) {
                         composable<Welcome> {
                             WelcomeScreen(navController)
                         }

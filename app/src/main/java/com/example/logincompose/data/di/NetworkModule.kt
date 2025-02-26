@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -20,6 +21,7 @@ object NetworkModule {
         level = HttpLoggingInterceptor.Level.BODY
     }
     @Provides
+    @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(logging)
@@ -28,6 +30,7 @@ object NetworkModule {
 
 
     @Provides
+    @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -37,6 +40,7 @@ object NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun provideUserApiService(retrofit: Retrofit): UserApi {
         return retrofit.create(UserApi::class.java)
     }
